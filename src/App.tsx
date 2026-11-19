@@ -63,7 +63,7 @@ export default function App() {
 
       <section className="work-section section-pad" id="work" aria-labelledby="work-title"><div className="section-wrap">
         <div className="section-heading" data-reveal><div><p className="section-kicker">Selected work</p><h2 id="work-title">Software with a practical edge.</h2></div><p className="section-intro">A few examples across computer vision, workflow automation, and applied AI integration.</p></div>
-        <div className="project-list">{projects.map((project) => <article className="project-card" key={project.number} data-reveal>
+        <div className="project-list">{projects.map((project) => <article className="project-card" id={`project-${project.number}`} key={project.number} data-reveal>
           <div className={`project-art art-${project.visual}`} aria-hidden="true">
             <span className="art-index">{project.number} / JN</span><span className="art-label">{project.category}</span>
             {project.visual === "vision" && <div className="vision-demo"><div className="vision-frame"><i /><i /><i /><b>OBJECT / DETECTED</b></div><span className="scan-line" /></div>}
@@ -75,20 +75,26 @@ export default function App() {
         </article>)}</div>
       </div></section>
 
-      <section className="desk-section section-pad" id="desk" aria-labelledby="desk-title"><div className="section-wrap">
-        <div className="section-heading" data-reveal><div><p className="section-kicker">On the desk</p><h2 id="desk-title">How I got here.</h2></div><p className="section-intro">From mechanical engineering into software, AI and real-world systems.</p></div>
-        <ol className="desk-list">{experience.slice(0, 4).map((item, index) => <li key={`${item.organization}-${item.period}`} data-reveal><span className="desk-number">0{index + 1}</span><span className="desk-period">{item.period}</span><div><h3>{item.organization}</h3><p>{item.role} <span>·</span> {item.detail}</p></div><span className={item.current ? "desk-state current" : "desk-state"}>{item.current ? "NOW" : ""}</span></li>)}</ol>
-      </div></section>
-
-      <section className="path-section section-pad" id="path" aria-labelledby="path-title"><div className="section-wrap path-layout">
-        <div className="path-heading" data-reveal><p className="section-kicker">The path so far</p><h2 id="path-title">Engineering<br />meets <em>software.</em></h2><p>The practical questions behind the work: how does it feel, and does it hold up outside the demo?</p></div>
-        <div className="path-content" data-reveal><div className="profile-card"><img src={profile} alt="Jasper Ng Jing Heng at his NTU graduation" /><div><strong>Jasper Ng Jing Heng</strong><span>AI Engineer · Mechanical Engineer</span></div></div><p>I’m a Mechanical Engineering graduate from Nanyang Technological University, specialising in Intelligent Manufacturing. My experience spans software development, robotics, automation, computer vision and IoT systems.</p><p>I enjoy building practical tools and working across software and physical systems—from early prototypes through deployment and support.</p><div className="education-note"><span>2023 — 2026</span><strong>Nanyang Technological University</strong><small>B.Eng. Mechanical Engineering · Intelligent Manufacturing · GPA 4.0</small></div></div>
-      </div></section>
-
       <section className="hobby-section section-pad" aria-labelledby="hobby-title"><div className="section-wrap">
-        <div className="section-heading" data-reveal><div><p className="section-kicker">Beyond work</p><h2 id="hobby-title">Things I do for fun.</h2></div><p className="section-intro">A little room for the other interests and small ventures that keep me curious.</p></div>
+        <div className="section-heading" data-reveal><div><p className="section-kicker">Hobby work</p><h2 id="hobby-title">Things I do for fun.</h2></div><p className="section-intro">Outside engineering: a few interests and small ventures built around community and creativity.</p></div>
         <div className="hobby-grid">{interests.map((item, i) => <div className="hobby-item" data-reveal key={item}><span>0{i + 1}</span>{item}</div>)}</div>
         <div className="side-projects">{sideProjects.map(item => <a className="side-project" href={item.href} target="_blank" rel="noopener noreferrer" key={item.name}><div><h3>{item.name}</h3><p>{item.detail}</p></div><span>{item.label} <Arrow /></span></a>)}</div>
+      </div></section>
+
+      <section className="desk-section section-pad" id="desk" aria-labelledby="desk-title"><div className="section-wrap">
+        <div className="section-heading" data-reveal><div><p className="section-kicker">On the desk</p><h2 id="desk-title">A few things I’ve built.</h2></div><p className="section-intro">From practical computer vision to engineering tools and AI integrations.</p></div>
+        <ol className="desk-list">{projects.map((project) => <li key={project.number} data-reveal><span className="desk-number">{project.number}</span><span className="desk-period">{project.category}</span><div><h3>{project.title}</h3><p>{project.summary}</p></div><a className="desk-link" href={`#project-${project.number}`} aria-label={`View ${project.title}`}>Read <Arrow /></a></li>)}</ol>
+      </div></section>
+
+      <section className="path-section section-pad" id="path" aria-labelledby="path-title"><div className="section-wrap">
+        <div className="section-heading path-intro" data-reveal><div><p className="section-kicker">The path so far</p><h2 id="path-title">A route through<br />engineering and software.</h2></div><p className="section-intro">From mechanical engineering to applied AI, automation and real-world systems.</p></div>
+        <nav className="year-nav" aria-label="Jump to a year in Jasper’s experience"><span>YEARS</span><a href="#career-now">Now</a><a href="#career-2026">2026</a><a href="#career-2024">2024</a><a href="#education-ntu">2023</a><a href="#career-2021">2021</a><a href="#career-2020">2020</a><a href="#education-np">2018</a></nav>
+        <div className="path-layout">
+          <div className="path-content" data-reveal><div className="profile-card"><img src={profile} alt="Jasper Ng Jing Heng at his NTU graduation" /><div><strong>Jasper Ng Jing Heng</strong><span>AI Engineer · Mechanical Engineer</span></div></div><p>I’m a Mechanical Engineering graduate from Nanyang Technological University, specialising in Intelligent Manufacturing. My experience spans software development, robotics, automation, computer vision and IoT systems.</p><p>I enjoy building practical tools and working across software and physical systems—from early prototypes through deployment and support.</p></div>
+          <div className="timeline-wrap"><ol className="timeline">{experience.map((item) => <li className={item.current ? "timeline-item is-current" : "timeline-item"} key={`${item.organization}-${item.period}`} id={item.anchor}><span className="timeline-marker" aria-hidden="true" /><span className="timeline-period">{item.period}</span><div className="timeline-role"><h3>{item.organization}{item.current && <span className="current-pill">CURRENT</span>}</h3><p className="role-title">{item.role}</p><p className="role-detail">{item.detail}</p></div></li>)}</ol>
+            <div className="education-list"><article className="education-note" id="education-ntu"><span>2023 — 2026</span><strong>Nanyang Technological University</strong><small>B.Eng. Mechanical Engineering · Intelligent Manufacturing · GPA 4.0</small></article><article className="education-note" id="education-np"><span>2018 — 2021</span><strong>Ngee Ann Polytechnic</strong><small>Diploma in Aerospace Technology · Minor in Business Management · GPA 3.6</small></article></div>
+          </div>
+        </div>
       </div></section>
 
       <section className="services-section section-pad" id="services" aria-labelledby="services-title"><div className="section-wrap">

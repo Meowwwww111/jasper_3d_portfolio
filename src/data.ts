@@ -33,12 +33,12 @@ export const projects: Project[] = [
 ];
 
 export const experience = [
-  { period: "SEP 2026 — NOW", organization: "AI Singapore", role: "AI Apprentice", detail: "Hands-on AI and machine-learning projects, from data preparation and model development through deployment.", current: true },
-  { period: "JUL — AUG 2026", organization: "Gericke Pte Ltd", role: "Project Engineer", detail: "Supported equipment design, project coordination, procurement and commissioning.", current: false },
-  { period: "JAN 2024 — MAY 2026", organization: "Freelance", role: "Software Developer", detail: "Built automation, computer-vision applications, bots and GPT-based integrations.", current: false },
+  { period: "SEP 2026 — NOW", organization: "AI Singapore", role: "AI Apprentice", detail: "Hands-on AI and machine-learning projects, from data preparation and model development through deployment.", current: true, anchor: "career-now" },
+  { period: "JUL — AUG 2026", organization: "Gericke Pte Ltd", role: "Project Engineer", detail: "Supported equipment design, project coordination, procurement and commissioning.", current: false, anchor: "career-2026" },
+  { period: "JAN 2024 — MAY 2026", organization: "Freelance", role: "Software Developer", detail: "Built automation, computer-vision applications, bots and GPT-based integrations.", current: false, anchor: "career-2024" },
   { period: "MAY — JUL 2024", organization: "QuikBot Technologies", role: "Engineer Intern", detail: "Deployed mobile robots and IoT systems, and supported setup, calibration and diagnostics.", current: false },
-  { period: "JUL 2021 — JUL 2023", organization: "Singapore Armed Forces", role: "Transport Operator · Lance Corporal", detail: "Operated heavy vehicles and served as an ambulance driver for National Day Parade and Mandai Hill Camp.", current: false },
-  { period: "SEP 2020 — FEB 2021", organization: "Rotork Controls Singapore", role: "Workshop Engineer Intern", detail: "Installed and tested actuators, supported calibration, and prepared project schedules and reports.", current: false },
+  { period: "JUL 2021 — JUL 2023", organization: "Singapore Armed Forces", role: "Transport Operator · Lance Corporal", detail: "Operated heavy vehicles and served as an ambulance driver for National Day Parade and Mandai Hill Camp.", current: false, anchor: "career-2021" },
+  { period: "SEP 2020 — FEB 2021", organization: "Rotork Controls Singapore", role: "Workshop Engineer Intern", detail: "Installed and tested actuators, supported calibration, and prepared project schedules and reports.", current: false, anchor: "career-2020" },
 ];
 
 export const skills = [
