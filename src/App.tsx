@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 const HeroScene = lazy(() => import("./HeroScene"));
+import ProjectVideo from "./ProjectVideo";
 import { experience, interests, projects, sideProjects, skills } from "./data";
 import profile from "./assets/jasper-profile.jpg";
 
@@ -21,6 +22,11 @@ function useScrollStory(reducedMotion: boolean) {
     if (reducedMotion) return;
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
+      const intro = gsap.timeline({ delay: 0.12, defaults: { ease: "power3.out" } });
+      intro.fromTo(".hero-index", { autoAlpha: 0, x: -18 }, { autoAlpha: 1, x: 0, duration: 0.55 })
+        .fromTo("#hero-title", { autoAlpha: 0, y: 42, filter: "blur(10px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9 }, "-=0.28")
+        .fromTo(".hero-about", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.65 }, "-=0.42");
+      gsap.to(".hero-scene-wrap", { yPercent: 14, scale: 1.08, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
         gsap.fromTo(element, { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: 0.65, ease: "power2.out", scrollTrigger: { trigger: element, start: "top 89%", once: true } });
       });
@@ -64,12 +70,8 @@ export default function App() {
       <section className="work-section section-pad" id="work" aria-labelledby="work-title"><div className="section-wrap">
         <div className="section-heading" data-reveal><div><p className="section-kicker">Selected work</p><h2 id="work-title">Software with a practical edge.</h2></div><p className="section-intro">A few examples across computer vision, workflow automation, and applied AI integration.</p></div>
         <div className="project-list">{projects.map((project) => <article className="project-card" id={`project-${project.number}`} key={project.number} data-reveal>
-          <div className={`project-art art-${project.visual}`} aria-hidden="true">
-            <span className="art-index">{project.number} / JN</span><span className="art-label">{project.category}</span>
-            {project.visual === "vision" && <div className="vision-demo"><div className="vision-frame"><i /><i /><i /><b>OBJECT / DETECTED</b></div><span className="scan-line" /></div>}
-            {project.visual === "ai" && <div className="ai-demo"><span>INPUT</span><i>→</i><b>LLM</b><i>→</i><span>USEFUL OUTPUT</span><small>DATA · CONTEXT · RESPONSE</small></div>}
-            {project.visual === "imu" && <div className="imu-demo"><span>X</span><span>Y</span><span>Z</span><div className="signal">{Array.from({length: 28}, (_, i) => <i key={i} />)}</div><small>IMU / LIVE SIGNAL</small></div>}
-            <span className="art-coordinate">SINGAPORE · {project.number}</span>
+          <div className={`project-art art-${project.visual}`}>
+            <ProjectVideo src={project.video.src} poster={project.video.poster} title={project.title} reducedMotion={reducedMotion} />
           </div>
           <div className="project-caption"><div><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-summary">{project.details}</p><div className="tag-list">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div>{project.link && <a className="text-link" href={project.link.href} target="_blank" rel="noopener noreferrer">{project.link.label} <Arrow /></a>}</div>
         </article>)}</div>

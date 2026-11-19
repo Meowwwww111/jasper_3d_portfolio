@@ -1,3 +1,10 @@
+import visionVideo from "./assets/project-media/vision.mp4";
+import visionPoster from "./assets/project-media/vision.jpg";
+import aiVideo from "./assets/project-media/ai-flow.mp4";
+import aiPoster from "./assets/project-media/ai-flow.jpg";
+import imuVideo from "./assets/project-media/imu-signal.mp4";
+import imuPoster from "./assets/project-media/imu-signal.jpg";
+
 export type Project = {
   number: string;
   category: string;
@@ -6,6 +13,7 @@ export type Project = {
   details: string;
   tags: string[];
   visual: "vision" | "ai" | "imu";
+  video: { src: string; poster: string };
   link?: { href: string; label: string };
 };
 
@@ -15,19 +23,19 @@ export const projects: Project[] = [
     number: "01", category: "COMPUTER VISION · FREELANCE", title: "Computer vision & automation",
     summary: "Practical software shaped around the people using it.",
     details: "Delivered customized automation and computer vision solutions to more than 300 users.",
-    tags: ["Computer vision", "Automation", "OpenCV"], visual: "vision",
+    tags: ["Computer vision", "Automation", "OpenCV"], visual: "vision", video: { src: visionVideo, poster: visionPoster },
   },
   {
     number: "02", category: "APPLIED AI · FREELANCE", title: "GPT-based tool integrations",
     summary: "Small, useful AI connections inside familiar workflows.",
     details: "Integrated GPT-based tools to support data processing and improve user experience.",
-    tags: ["GPT integration", "Data processing", "UX"], visual: "ai",
+    tags: ["GPT integration", "Data processing", "UX"], visual: "ai", video: { src: aiVideo, poster: aiPoster },
   },
   {
     number: "03", category: "ENGINEERING SOFTWARE · NTU", title: "IMU data collection GUI",
     summary: "A clear interface for collecting inertial measurement data.",
     details: "Built a graphical interface setup for IMU data collection as part of a Mechanical Engineering final-year project.",
-    tags: ["GUI", "Data collection", "Engineering"], visual: "imu",
+    tags: ["GUI", "Data collection", "Engineering"], visual: "imu", video: { src: imuVideo, poster: imuPoster },
     link: { href: "https://youtube.com/shorts/RctI3QtQyas?feature=share", label: "Watch the project demo" },
   },
 ];
